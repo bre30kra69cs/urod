@@ -4,7 +4,7 @@
   "description": "urod telegram bot",
   "main": "dist/index.js",
   "scripts": {
-    "serve": "node dist",
+    "start": "node dist",
     "watch": "npx concurrently 'npm:watch:*'",
     "watch:dist": "npm run build && npx nodemon dist",
     "watch:src": "npx tsc -w",
@@ -35,6 +35,7 @@
   },
   "homepage": "https://github.com/bre30kra69cs/urod#readme",
   "devDependencies": {
+    "@types/node": "15.0.1",
     "@typescript-eslint/eslint-plugin": "4.22.0",
     "@typescript-eslint/parser": "4.22.0",
     "concurrently": "6.0.2",
