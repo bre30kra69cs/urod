@@ -1,20 +1,19 @@
 import {config} from '../config';
 import {createBot} from '../telegraf';
+import 'dotenv';
 
 export const main = () => {
-  const token = config.getToken();
-
-  if (!token) {
-    return;
-  }
-
-  const bot = createBot(token);
+  const bot = createBot(config.getToken());
 
   bot.hears('token', (ctx) => {
-    ctx.reply(token);
+    ctx.reply(config.getToken());
   });
 
-  bot.launch();
+  bot.launch({
+    webhook: {
+      hookPath: '/secret-path',
+    },
+  });
 
   process.once('SIGINT', () => {
     bot.stop('SIGINT');
