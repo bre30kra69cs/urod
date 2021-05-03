@@ -6,27 +6,28 @@ export const getDateTime = () => {
 
 export const getTime = (): Time => {
   const datetime = getDateTime();
-  const hourse = datetime.getHours();
+  const hours = datetime.getHours();
   const minutes = datetime.getMinutes();
-  return [hourse, minutes];
+  return {
+    hours,
+    minutes,
+  };
 };
 
 export const compareTime = (source: Time, target: Time) => {
-  if (source[0] > target[0]) {
+  if (source.hours > target.hours) {
     return Compare.Bg;
-  }
-
-  if (source[0] === target[0]) {
-    if (source[1] === target[1]) {
+  } else if (source.hours === target.hours) {
+    if (source.minutes === target.minutes) {
       return Compare.Eq;
-    } else if (source[1] > target[1]) {
+    } else if (source.minutes > target.minutes) {
       return Compare.Bg;
     } else {
       return Compare.Sm;
     }
+  } else {
+    return Compare.Sm;
   }
-
-  return Compare.Sm;
 };
 
 export const isStrictBeforeTime = (source: Time, target: Time) => {
@@ -53,6 +54,6 @@ export const isAfterTime = (source: Time, target: Time) => {
 };
 
 export const isInIntervalTime = (source: TimeInterval, target: Time) => {
-  const [start, end] = source;
+  const {start, end} = source;
   return isBeforeTime(start, target) && isAfterTime(end, target);
 };

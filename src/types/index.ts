@@ -1,8 +1,14 @@
 export {Context, Telegraf} from 'telegraf';
 
-export type Time = [number, number];
+export interface Time {
+  hours: number;
+  minutes: number;
+}
 
-export type TimeInterval = [Time, Time];
+export interface TimeInterval {
+  start: Time;
+  end: Time;
+}
 
 export enum Compare {
   Bg = 'Bg',
