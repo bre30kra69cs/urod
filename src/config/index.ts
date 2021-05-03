@@ -4,7 +4,7 @@ const createConfig = () => {
   };
 
   const getPort = () => {
-    return process.env.PORT ?? '5000';
+    return parseInt(process.env.PORT ?? '5000');
   };
 
   return {

@@ -11,7 +11,8 @@ export const main = () => {
 
   bot.launch({
     webhook: {
-      hookPath: '/secret-path',
+      domain: 'http://urod-bot.herokuapp.com/',
+      port: config.getPort(),
     },
   });
 
