@@ -1,1 +1,2 @@
-web: npm run serve
+heroku ps:scale web=1
+
