@@ -57,3 +57,7 @@ export const isInIntervalTime = (source: TimeInterval, target: Time) => {
   const {start, end} = source;
   return isBeforeTime(start, target) && isAfterTime(end, target);
 };
+
+export const formateTime = (time: Time) => {
+  return `${time.hours}:${time.minutes}`;
+};

@@ -1,7 +1,8 @@
-import {createTimeChatMessage} from '../../utils';
+import {getTime, formateTime, createTimeChatMessage} from '../../utils';
 
 const chatMessage = createTimeChatMessage(() => {
-  return 'is time';
+  const timeNow = getTime();
+  return formateTime(timeNow);
 });
 
 export default chatMessage;
