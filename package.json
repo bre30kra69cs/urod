@@ -13,7 +13,7 @@
     "clean": "rm -rf node_modules dist",
     "pure": "rm -rf node_modules dist package-lock.json",
     "check:prettier": "npx prettier --check ./src",
-    "check:eslint": "npx eslint src --ext .ts",
+    "check:eslint": "npx eslint src --ext .ts --max-warnings 0",
     "check:tsc": "npm run build",
     "check": "npx concurrently 'npm:check:*'",
     "prepare": "npx husky install"
