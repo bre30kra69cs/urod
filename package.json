@@ -13,7 +13,10 @@
     "clean": "rm -rf node_modules dist",
     "pure": "rm -rf node_modules dist package-lock.json",
     "check:prettier": "npx prettier --check ./src",
-    "check:eslint": "npx eslint src --ext .ts"
+    "check:eslint": "npx eslint src --ext .ts",
+    "check:tsc": "npm run build",
+    "check": "npx concurrently 'npm:check:*'",
+    "prepare": "npx husky install"
   },
   "repository": {
     "type": "git",
@@ -37,6 +40,7 @@
     "concurrently": "6.0.2",
     "eslint": "7.25.0",
     "eslint-config-prettier": "8.3.0",
+    "husky": "6.0.0",
     "nodemon": "2.0.7",
     "prettier": "^2.2.1",
     "typescript": "4.2.4"
