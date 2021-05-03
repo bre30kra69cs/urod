@@ -2,9 +2,16 @@
   "name": "urod",
   "version": "0.0.1",
   "description": "urod telegram bot",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "npx tsc"
+    "serve": "node dist",
+    "watch": "npx concurrently 'npm:watch:*'",
+    "watch:dist": "npm run build && npx nodemon dist",
+    "watch:src": "npx tsc -w",
+    "build": "npm run build:clean && npx tsc",
+    "build:clean": "rm -rf dist",
+    "clean": "rm -rf node_modules dist",
+    "pure": "rm -rf node_modules dist package-lock.json"
   },
   "repository": {
     "type": "git",
@@ -23,6 +30,11 @@
   },
   "homepage": "https://github.com/bre30kra69cs/urod#readme",
   "devDependencies": {
+    "concurrently": "6.0.2",
+    "nodemon": "2.0.7",
     "typescript": "4.2.4"
+  },
+  "dependencies": {
+    "telegraf": "4.3.0"
   }
 }

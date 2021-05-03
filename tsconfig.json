@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "target": "ES2016",
+    "target": "ES5",
     "lib": ["ESNext", "DOM"],
     "moduleResolution": "Node",
-    "module": "ESNext",
+    "module": "CommonJS",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "noEmit": false,
     "strict": true,
-    "allowJs": false,
+    "allowJs": false
   },
-  "include": ["src"],
+  "include": ["src"]
 }
