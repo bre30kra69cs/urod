@@ -1,0 +1,28 @@
+{
+  "name": "urod",
+  "version": "0.0.1",
+  "description": "urod telegram bot",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bre30kra69cs/urod.git"
+  },
+  "keywords": [
+    "urod",
+    "telegram",
+    "bot",
+    "robot"
+  ],
+  "author": "Andrey Krasovsky <an.krasowsckij@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bre30kra69cs/urod/issues"
+  },
+  "homepage": "https://github.com/bre30kra69cs/urod#readme",
+  "devDependencies": {
+    "typescript": "4.2.4"
+  }
+}
