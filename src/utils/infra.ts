@@ -13,7 +13,5 @@ export const createTimeChatMessage = (fn: (bot: Telegraf) => string | undefined)
     return;
   }
 
-  if (message) {
-    bot.telegram.sendMessage(bot.context.chat.id, message);
-  }
+  bot.telegram.sendMessage(bot.context.chat.id, message);
 };
