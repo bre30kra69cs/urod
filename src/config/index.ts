@@ -1,6 +1,6 @@
 const createConfig = () => {
   const getToken = () => {
-    return process.env.TOKEN!;
+    return process.env.TOKEN;
   };
 
   return {

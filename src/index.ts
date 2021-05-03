@@ -1,1 +1,3 @@
-import './domain';
+import {main} from './domain';
+
+main();

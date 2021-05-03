@@ -4,7 +4,7 @@
   "description": "urod telegram bot",
   "main": "dist/index.js",
   "scripts": {
-    "start": "node dist",
+    "serve": "node dist",
     "watch": "npx concurrently 'npm:watch:*'",
     "watch:dist": "npm run build && npx nodemon dist",
     "watch:src": "npx tsc -w",

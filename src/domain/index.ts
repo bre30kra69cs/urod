@@ -1,18 +1,26 @@
 import {config} from '../config';
 import {createBot} from '../telegraf';
 
-const bot = createBot(config.getToken());
+export const main = () => {
+  const token = config.getToken();
 
-bot.hears('token', (ctx) => {
-  ctx.reply(config.getToken());
-});
+  if (!token) {
+    return;
+  }
 
-bot.launch();
+  const bot = createBot(token);
 
-process.once('SIGINT', () => {
-  bot.stop('SIGINT');
-});
+  bot.hears('token', (ctx) => {
+    ctx.reply(token);
+  });
 
-process.once('SIGTERM', () => {
-  bot.stop('SIGTERM');
-});
+  bot.launch();
+
+  process.once('SIGINT', () => {
+    bot.stop('SIGINT');
+  });
+
+  process.once('SIGTERM', () => {
+    bot.stop('SIGTERM');
+  });
+};
