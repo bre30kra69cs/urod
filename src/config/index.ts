@@ -20,8 +20,8 @@ const createConfig = () => {
 
   const getPickTimeInterval = (): TimeInterval => {
     return [
-      [12, 0],
-      [12, 10],
+      [0, 30],
+      [0, 43],
     ];
   };
 
