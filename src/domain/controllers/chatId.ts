@@ -1,6 +1,6 @@
 import {createCommand} from '../../utils';
 
-const command = createCommand('chat-id', (ctx) => {
+const command = createCommand('chat_id', (ctx) => {
   ctx.reply(String(ctx.chat?.id ?? -1));
 });
 
