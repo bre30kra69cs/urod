@@ -1,3 +1,6 @@
+import {SECOND} from '../consts';
+import {TimeInterval} from '../types';
+
 const createConfig = () => {
   const getToken = () => {
     return process.env.TOKEN ?? '';
@@ -12,7 +15,14 @@ const createConfig = () => {
   };
 
   const getInterval = () => {
-    return 1000;
+    return SECOND * 60;
+  };
+
+  const getPickTimeInterval = (): TimeInterval => {
+    return [
+      [12, 0],
+      [12, 10],
+    ];
   };
 
   return {
@@ -20,6 +30,7 @@ const createConfig = () => {
     getPort,
     getHttpDomain,
     getInterval,
+    getPickTimeInterval,
   };
 };
 
