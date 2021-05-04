@@ -31,12 +31,17 @@ const createConfig = () => {
     );
   };
 
+  const getDbUrl = () => {
+    return process.env.DATABASE_URL ?? '';
+  };
+
   return {
     getToken,
     getPort,
     getHttpDomain,
     getInterval,
     getPickTimeInterval,
+    getDbUrl,
   };
 };
 

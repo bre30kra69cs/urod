@@ -1,7 +1,10 @@
-import {Context, Telegraf} from '../types';
+import {DataManager, Context, Telegraf} from '../types';
 
-export const createCommand = (value: string, fn: (ctx: Context) => void) => (bot: Telegraf) => {
-  bot.command(value, fn);
+export const createCommand = (
+  value: string,
+  fn: (dataManager: DataManager) => (ctx: Context) => void,
+) => (bot: Telegraf, dataManager: DataManager) => {
+  bot.command(value, fn(dataManager));
 };
 
 export const createTimeChatMessage = (fn: (bot: Telegraf) => string | undefined) => (

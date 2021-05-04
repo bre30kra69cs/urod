@@ -1,10 +1,11 @@
 import {config} from '../config';
 import {createBot} from '../telegraf';
 import {compose} from './compose';
+import {Client} from '../types';
 
-export const main = () => {
+export const main = (db: Client) => {
   const bot = createBot(config.getToken());
-  compose(bot);
+  compose(bot, db);
 
   bot.launch({
     webhook: {

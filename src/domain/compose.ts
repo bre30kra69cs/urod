@@ -1,12 +1,12 @@
-import {Telegraf} from '../types';
+import {Client, Telegraf} from '../types';
 import daily from './controllers/daily';
 import info from './controllers/info';
+import register from './controllers/register';
+import {createDataManager} from '../db';
 
-const commands = [daily, info];
+const commands = [daily, info, register];
 
-export const compose = (bot: Telegraf) => {
-  commands.forEach((command) => command(bot));
-  bot.command('test', (ctx) => {
-    ctx.reply(String(bot.context.chat?.id));
-  });
+export const compose = (bot: Telegraf, db: Client) => {
+  const dataManager = createDataManager(db);
+  commands.forEach((command) => command(bot, dataManager));
 };

@@ -20,7 +20,7 @@ const message = (author = '', target = '') => {
   ]);
 };
 
-const command = createCommand('daily', (ctx) => {
+const command = createCommand('daily', () => (ctx) => {
   ctx.reply(message(ctx.from?.first_name, ctx.from?.first_name));
 });
 
