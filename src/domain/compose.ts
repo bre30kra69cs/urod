@@ -7,6 +7,6 @@ const commands = [daily, info];
 export const compose = (bot: Telegraf) => {
   commands.forEach((command) => command(bot));
   bot.command('test', (ctx) => {
-    ctx.reply(JSON.stringify(bot.context.chat, undefined, 2));
+    ctx.reply(String(bot.context.chat?.id));
   });
 };
