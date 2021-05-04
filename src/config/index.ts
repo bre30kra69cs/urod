@@ -1,5 +1,5 @@
+import {DateTime, Interval} from 'luxon';
 import {SECOND} from '../consts';
-import {TimeInterval} from '../types';
 
 const createConfig = () => {
   const getToken = () => {
@@ -18,17 +18,17 @@ const createConfig = () => {
     return SECOND * 60;
   };
 
-  const getPickTimeInterval = (): TimeInterval => {
-    return {
-      start: {
-        hours: 0,
-        minutes: 40,
-      },
-      end: {
-        hours: 0,
-        minutes: 55,
-      },
-    };
+  const getPickTimeInterval = () => {
+    return Interval.fromDateTimes(
+      DateTime.fromObject({
+        hour: 11,
+        minute: 0,
+      }),
+      DateTime.fromObject({
+        hour: 12,
+        minute: 0,
+      }),
+    );
   };
 
   return {

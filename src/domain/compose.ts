@@ -1,15 +1,12 @@
-import {createTimer} from '../utils';
 import {Telegraf} from '../types';
-import {config} from '../config';
-import chatId from './controllers/chatId';
 import daily from './controllers/daily';
 import info from './controllers/info';
-import pick from './controllers/pick';
 
-import watcher from './controllers/watcher';
+const commands = [daily, info];
 
 export const compose = (bot: Telegraf) => {
-  const timer = createTimer(config.getInterval());
-  [pick, watcher].forEach((chatMessage) => timer.push(chatMessage(bot)));
-  [daily, info, chatId].forEach((command) => command(bot));
+  commands.forEach((command) => command(bot));
+  bot.command('test', (ctx) => {
+    ctx.reply(JSON.stringify(bot, undefined, 2));
+  });
 };
