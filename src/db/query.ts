@@ -1,7 +1,7 @@
-import {Client, DataManager} from '../types';
+import {User, Client, DataManager} from '../types';
 
 export const createDataManager = (db: Client): DataManager => {
-  const getRows = async <T>(query: string): Promise<T[]> => {
+  const pushQuery = async <T>(query: string): Promise<T[]> => {
     return new Promise((resolve, reject) => {
       db.query(query, (error, result) => {
         if (error) {
@@ -14,7 +14,16 @@ export const createDataManager = (db: Client): DataManager => {
     });
   };
 
+  const getChatUsers = async (chatId: number): Promise<User[]> => {
+    return await pushQuery(`SELECT * FROM chats WHERE chatid = '${chatId}'`);
+  };
+
+  const addChat = async (chatId: number) => {
+    await pushQuery(`INSERT INTO chats VALUES ('${chatId}');`);
+  };
+
   return {
-    getRows,
+    getChatUsers,
+    addChat,
   };
 };

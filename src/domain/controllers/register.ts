@@ -1,9 +1,16 @@
 import {createCommand} from '../../utils';
 
-const command = createCommand('register', (dataManager) => async () => {
-  await dataManager.getRows(
-    'CREATE TABLE users(chatid integer NOT NULL, date text NOT NULL, username text NOT NULL, selected boolean NOT NULL)',
-  );
+const errorMessage = () => {
+  return 'Ошибка полученя chatId :(';
+};
+
+const command = createCommand('register', (dataManager) => async (ctx) => {
+  if (!ctx.chat?.id) {
+    ctx.reply(errorMessage());
+    return;
+  }
+
+  await dataManager.addChat(ctx.chat.id);
 });
 
 export default command;
