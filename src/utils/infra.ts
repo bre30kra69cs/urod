@@ -1,22 +1,18 @@
 import {Context, Telegraf} from 'telegraf';
 
 import {DataManager} from '../types';
+import {error} from './logger';
 
 export const createCommand = (
-  value: string,
-  fn: (dataManager: DataManager) => (ctx: Context) => void,
+  commandName: string,
+  fn: (dataManager: DataManager) => (ctx: Context) => Promise<void>,
 ) => (bot: Telegraf, dataManager: DataManager) => {
-  bot.command(value, fn(dataManager));
-};
-
-export const createTimeChatMessage = (fn: (bot: Telegraf) => string | undefined) => (
-  bot: Telegraf,
-) => () => {
-  const message = fn(bot);
-
-  if (!bot.context.chat?.id || !message) {
-    return;
-  }
-
-  bot.telegram.sendMessage(bot.context.chat.id, message);
+  const target = fn(dataManager);
+  bot.command(commandName, async (ctx) => {
+    try {
+      await target(ctx);
+    } catch (err) {
+      error(commandName, err);
+    }
+  });
 };
