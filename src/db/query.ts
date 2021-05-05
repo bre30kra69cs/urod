@@ -33,7 +33,7 @@ export const createDataManager = (db: Client): DataManager => {
   };
 
   const removeChat = async (chatId: number) => {
-    await pushQuery(`DELETE FROM chats WHERE chatid = ${chatId};`);
+    await pushQuery(`DELETE FROM chats WHERE id = ${chatId};`);
   };
 
   const getChats = async (): Promise<Chat[]> => {
