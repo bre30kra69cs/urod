@@ -12,6 +12,7 @@ export interface User {
 export interface DataManager {
   getChatUsers: (chatId: number) => Promise<User[]>;
   addChat: (chatId: number) => Promise<void>;
+  removeChat: (chatId: number) => Promise<void>;
   getChats: () => Promise<Chat[]>;
   setUser: (chatId: number, date: string, username: string, selected: boolean) => Promise<void>;
   getLastChatUser: (chatId: number) => Promise<User | undefined>;

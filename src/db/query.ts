@@ -23,6 +23,10 @@ export const createDataManager = (db: Client): DataManager => {
     await pushQuery(`INSERT INTO chats VALUES ('${chatId}')`);
   };
 
+  const removeChat = async (chatId: number) => {
+    await pushQuery(`DELETE FROM chats WHERE chatid = '${chatId}'`);
+  };
+
   const getChats = async (): Promise<Chat[]> => {
     return await pushQuery(`SELECT * FROM chats`);
   };
@@ -62,6 +66,7 @@ export const createDataManager = (db: Client): DataManager => {
   return {
     getChatUsers,
     addChat,
+    removeChat,
     getChats,
     setUser,
     getLastChatUser,
