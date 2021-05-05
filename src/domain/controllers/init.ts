@@ -1,6 +1,6 @@
 import {createCommand} from '../../utils';
 
-const command = createCommand('unregister', (dm) => async () => {
+const command = createCommand('init', (dm) => async () => {
   await dm.createTables;
 });
 
