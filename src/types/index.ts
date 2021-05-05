@@ -1,21 +1,18 @@
 export interface Chat {
-  chatid: number;
+  id: number;
 }
 
 export interface User {
+  id: number;
   chatid: number;
-  date: string;
-  username: string;
-  selected: boolean;
+  date: number;
 }
 
 export interface DataManager {
+  createTables: () => Promise<void>;
   getChatUsers: (chatId: number) => Promise<User[]>;
   addChat: (chatId: number) => Promise<void>;
   removeChat: (chatId: number) => Promise<void>;
   getChats: () => Promise<Chat[]>;
-  setUser: (chatId: number, date: string, username: string, selected: boolean) => Promise<void>;
-  getLastChatUser: (chatId: number) => Promise<User | undefined>;
-  getLastSelectedChatUser: (chatId: number) => Promise<User | undefined>;
-  getCurrentSelectedChatUser: (chatId: number) => Promise<User | undefined>;
+  getChatSelectedUsers: (chatId: number) => Promise<User[]>;
 }

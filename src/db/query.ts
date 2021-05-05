@@ -1,5 +1,4 @@
 import {Client} from 'pg';
-import {DateTime} from 'luxon';
 import {User, Chat, DataManager} from '../types';
 
 export const createDataManager = (db: Client): DataManager => {
@@ -13,6 +12,16 @@ export const createDataManager = (db: Client): DataManager => {
         resolve(result?.rows ?? []);
       });
     });
+  };
+
+  const createTables = async () => {
+    await pushQuery(`CREATE TABLE chats (id INT NOT NULL)`);
+    await pushQuery(
+      `CREATE TABLE users (id INT NOT NULL, chatid INT NOT NULL, date timestamp NOT NULL)`,
+    );
+    await pushQuery(
+      `CREATE TABLE selected_users (id INT NOT NULL, chatid INT NOT NULL, date timestamp NOT NULL)`,
+    );
   };
 
   const getChatUsers = async (chatId: number): Promise<User[]> => {
@@ -31,44 +40,16 @@ export const createDataManager = (db: Client): DataManager => {
     return await pushQuery(`SELECT * FROM chats;`);
   };
 
-  const setUser = async (chatId: number, date: string, username: string, selected: boolean) => {
-    await pushQuery(`INSERT INTO users VALUES (${chatId}, '${date}', '${username}', ${selected});`);
-  };
-
-  const getLastChatUser = async (chatId: number): Promise<User | undefined> => {
-    const users = await getChatUsers(chatId);
-    return users[users.length - 1];
-  };
-
-  const getLastSelectedChatUser = async (chatId: number): Promise<User | undefined> => {
-    const users = await getChatUsers(chatId);
-    const selectedUsers = users.filter((user) => user.selected);
-    return selectedUsers[selectedUsers.length - 1];
-  };
-
-  const getCurrentSelectedChatUser = async (chatId: number): Promise<User | undefined> => {
-    const user = await getLastSelectedChatUser(chatId);
-
-    if (user) {
-      const now = DateTime.now();
-      const date = DateTime.fromISO(user.date);
-
-      if (date.hasSame(now, 'year') && date.hasSame(now, 'month') && date.hasSame(now, 'day')) {
-        if (now > date) {
-          return user;
-        }
-      }
-    }
+  const getChatSelectedUsers = async (chatId: number): Promise<User[]> => {
+    return await pushQuery(`SELECT * FROM selected_users WHERE chatid = ${chatId};`);
   };
 
   return {
+    createTables,
     getChatUsers,
     addChat,
     removeChat,
     getChats,
-    setUser,
-    getLastChatUser,
-    getLastSelectedChatUser,
-    getCurrentSelectedChatUser,
+    getChatSelectedUsers,
   };
 };

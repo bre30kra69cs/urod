@@ -1,11 +1,11 @@
 import {getResourceUrl, createCommand} from '../../utils';
 
-const command = createCommand('unregister', (dataManager) => async (ctx) => {
+const command = createCommand('unregister', (dm) => async (ctx) => {
   if (!ctx.chat?.id) {
     return;
   }
 
-  await dataManager.removeChat(ctx.chat.id);
+  await dm.removeChat(ctx.chat.id);
   await ctx.replyWithPhoto({
     source: getResourceUrl('fuck.jpeg'),
   });
