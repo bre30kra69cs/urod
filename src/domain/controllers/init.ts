@@ -1,11 +1,11 @@
 import {createCommand} from '../../utils';
 
 const tableMessageSuccess = () => {
-  return 'TABLES CREATED ✅✅✅';
+  return 'TABLE CREATED ✅✅✅';
 };
 
 const tableMessageError = () => {
-  return `TABLES CREATE ERROR - ❌❌❌`;
+  return `TABLE CREATING ERROR - ❌❌❌`;
 };
 
 const message = () => {

@@ -1,7 +1,7 @@
 import {getName, getRandomFrom, getResourceUrl, createCommand} from '../../utils';
 
 const message = (author: string) => {
-  return `${author}, теперь я могу выбирать тебя *ПОПУЩЕННЫМ* дня...`;
+  return `${author} 🙈😁⚠️🤟👍🤝👯‍♂️👨‍👩‍👧‍👦 теперь я могу выбирать тебя *ПОПУЩЕННЫМ* дня...`;
 };
 
 const command = createCommand('join', (dm) => async (ctx) => {
@@ -12,7 +12,6 @@ const command = createCommand('join', (dm) => async (ctx) => {
   }
 
   const chatUsers = await dm.getChatUsers(ctx.chat.id);
-  console.log(chatUsers);
 
   if (chatUsers.find((user) => user.id === ctx.from?.id)) {
     await ctx.replyWithPhoto({

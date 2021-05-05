@@ -47,7 +47,7 @@ export const createDataManager = (db: Client): DataManager => {
 
   const addUser = async (userId: number, chatId: number) => {
     await pushQuery(
-      `INSERT INTO users VALUES (${userId}, ${chatId}, "${DateTime.now().toString()}");`,
+      `INSERT INTO users VALUES (${userId}, ${chatId}, '${DateTime.now().toString()}');`,
     );
   };
 
