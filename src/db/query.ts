@@ -44,6 +44,14 @@ export const createDataManager = (db: Client): DataManager => {
     return (await pushQuery(`SELECT * FROM selected_users WHERE chatid = ${chatId};`)) ?? [];
   };
 
+  const addUser = async (userId: number, chatId: number) => {
+    await pushQuery(`INSERT INTO users VALUES (${userId}, ${chatId}, ${Date.now()});`);
+  };
+
+  const removeUser = async (userId: number, chatId: number) => {
+    await pushQuery(`DELETE FROM users WHERE id = ${userId} AND chatid = ${chatId};`);
+  };
+
   return {
     createTables,
     getChatUsers,
@@ -51,5 +59,7 @@ export const createDataManager = (db: Client): DataManager => {
     removeChat,
     getChats,
     getChatSelectedUsers,
+    addUser,
+    removeUser,
   };
 };

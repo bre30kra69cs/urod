@@ -1,8 +1,24 @@
-import {createCommand, getRandomFrom} from '../../utils';
+import {getName, createCommand, getRandomFrom} from '../../utils';
 
 const message = (author = '', target = '') => {
-  if (!target) {
+  if (!author && !target) {
     return 'Пока еще никто ⚔️🧲📟🎙🏮💌📉 дорогой Анончик...';
+  }
+
+  if (!target) {
+    return getRandomFrom([
+      `*ПОПУЩЕННОГО* не выбрали, но ты ${author} явно нюхач...`,
+      `*ПОПУЩЕННОГО* не выбрали`,
+      `${author}?`,
+      `...`,
+      `...`,
+      `${author}, чел ты...`,
+      `${author}, чел ты...`,
+      `...`,
+      `...`,
+      `...`,
+      `Опять работать?`,
+    ]);
   }
 
   if (!author) {
@@ -23,7 +39,9 @@ const command = createCommand('daily', () => async (ctx) => {
     return;
   }
 
-  ctx.replyWithMarkdown(message(ctx.from?.first_name));
+  ctx.replyWithMarkdown(
+    message(getName(ctx.from?.username, ctx.from?.first_name, ctx.from?.last_name)),
+  );
 });
 
 export default command;
