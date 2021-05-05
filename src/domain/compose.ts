@@ -1,4 +1,6 @@
-import {Client, Telegraf} from '../types';
+import {Client} from 'pg';
+import {Telegraf} from 'telegraf';
+
 import daily from './controllers/daily';
 import info from './controllers/info';
 import register from './controllers/register';

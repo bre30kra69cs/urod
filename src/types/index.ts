@@ -1,6 +1,3 @@
-export {Context, Telegraf} from 'telegraf';
-export {Client} from 'pg';
-
 export interface Chat {
   chatid: number;
 }

@@ -1,5 +1,6 @@
+import {Client} from 'pg';
 import {DateTime} from 'luxon';
-import {User, Chat, Client, DataManager} from '../types';
+import {User, Chat, DataManager} from '../types';
 
 export const createDataManager = (db: Client): DataManager => {
   const pushQuery = async <T>(query: string): Promise<T[]> => {

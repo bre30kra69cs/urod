@@ -1,4 +1,6 @@
-import {DataManager, Context, Telegraf} from '../types';
+import {Context, Telegraf} from 'telegraf';
+
+import {DataManager} from '../types';
 
 export const createCommand = (
   value: string,

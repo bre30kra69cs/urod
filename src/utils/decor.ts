@@ -1,3 +1,3 @@
-export const bold = (text = '') => {
+export const bold = (text?: string | number) => {
   return `*${text}*`;
 };

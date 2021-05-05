@@ -1,10 +1,11 @@
+import {Client} from 'pg';
+import {Telegraf} from 'telegraf';
+
 import {config} from '../config';
-import {createBot} from '../telegraf';
 import {compose} from './compose';
-import {Client} from '../types';
 
 export const main = (db: Client) => {
-  const bot = createBot(config.getToken());
+  const bot = new Telegraf(config.getToken());
   compose(bot, db);
 
   bot.launch({
