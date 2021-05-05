@@ -20,8 +20,11 @@ const message = (author = '', target = '') => {
   ]);
 };
 
-const command = createCommand('daily', () => (ctx) => {
-  ctx.reply(message(ctx.from?.first_name, ctx.from?.first_name));
+const command = createCommand('daily', (dataManager) => async (ctx) => {
+  if (ctx.chat?.id) {
+    const current = await dataManager.getCurrentSelectedChatUser(ctx.chat.id);
+    ctx.reply(message(ctx.from?.first_name, current?.username));
+  }
 });
 
 export default command;
