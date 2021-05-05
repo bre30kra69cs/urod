@@ -6,7 +6,7 @@ const message = () => {
 };
 
 const command = createCommand('info', () => (ctx) => {
-  ctx.reply(message());
+  ctx.replyWithMarkdown(message());
 });
 
 export default command;
