@@ -16,23 +16,23 @@ export const createDataManager = (db: Client): DataManager => {
   };
 
   const getChatUsers = async (chatId: number): Promise<User[]> => {
-    return await pushQuery(`SELECT * FROM users WHERE chatid = ${chatId}`);
+    return await pushQuery(`SELECT * FROM users WHERE chatid = ${chatId};`);
   };
 
   const addChat = async (chatId: number) => {
-    await pushQuery(`INSERT INTO chats VALUES (${chatId})`);
+    await pushQuery(`INSERT INTO chats VALUES (${chatId});`);
   };
 
   const removeChat = async (chatId: number) => {
-    await pushQuery(`DELETE FROM chats WHERE chatid = ${chatId}`);
+    await pushQuery(`DELETE FROM chats WHERE chatid = ${chatId};`);
   };
 
   const getChats = async (): Promise<Chat[]> => {
-    return await pushQuery(`SELECT * FROM chats`);
+    return await pushQuery(`SELECT * FROM chats;`);
   };
 
   const setUser = async (chatId: number, date: string, username: string, selected: boolean) => {
-    await pushQuery(`INSERT INTO users VALUES (${chatId}, '${date}', '${username}', ${selected})`);
+    await pushQuery(`INSERT INTO users VALUES (${chatId}, '${date}', '${username}', ${selected});`);
   };
 
   const getLastChatUser = async (chatId: number): Promise<User | undefined> => {
