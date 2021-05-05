@@ -12,6 +12,7 @@ const command = createCommand('join', (dm) => async (ctx) => {
   }
 
   const chatUsers = await dm.getChatUsers(ctx.chat.id);
+  console.log(chatUsers);
 
   if (chatUsers.find((user) => user.id === ctx.from!.id)) {
     await ctx.replyWithPhoto({
