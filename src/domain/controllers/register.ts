@@ -10,9 +10,14 @@ const command = createCommand('register', (dataManager) => async (ctx) => {
   }
 
   await dataManager.addChat(ctx.chat.id);
-  await ctx.replyWithPhoto(getResourceUrl('rick.png'), {
-    caption: message(),
-  });
+  await ctx.replyWithPhoto(
+    {
+      source: getResourceUrl('rick.png'),
+    },
+    {
+      caption: message(),
+    },
+  );
 });
 
 export default command;
