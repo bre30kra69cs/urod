@@ -3,12 +3,12 @@ import {Telegraf} from 'telegraf';
 
 import daily from './controllers/daily';
 import info from './controllers/info';
-import register from './controllers/register';
-import unregister from './controllers/unregister';
+import on from './controllers/on';
+import off from './controllers/off';
 import init from './controllers/init';
 import {createDataManager} from '../db';
 
-const commands = [daily, info, register, unregister, init];
+const commands = [daily, info, on, off, init];
 
 export const compose = (bot: Telegraf, db: Client) => {
   const dm = createDataManager(db);

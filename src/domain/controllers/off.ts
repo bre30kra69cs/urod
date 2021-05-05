@@ -1,6 +1,6 @@
 import {getResourceUrl, createCommand} from '../../utils';
 
-const command = createCommand('unregister', (dm) => async (ctx) => {
+const command = createCommand('off', (dm) => async (ctx) => {
   if (!ctx.chat?.id) {
     return;
   }

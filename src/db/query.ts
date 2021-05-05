@@ -25,7 +25,7 @@ export const createDataManager = (db: Client): DataManager => {
   };
 
   const getChatUsers = async (chatId: number): Promise<User[]> => {
-    return await pushQuery(`SELECT * FROM users WHERE chatid = ${chatId};`);
+    return (await pushQuery(`SELECT * FROM users WHERE chatid = ${chatId};`)) ?? [];
   };
 
   const addChat = async (chatId: number) => {
@@ -37,11 +37,11 @@ export const createDataManager = (db: Client): DataManager => {
   };
 
   const getChats = async (): Promise<Chat[]> => {
-    return await pushQuery(`SELECT * FROM chats;`);
+    return (await pushQuery(`SELECT * FROM chats;`)) ?? [];
   };
 
   const getChatSelectedUsers = async (chatId: number): Promise<User[]> => {
-    return await pushQuery(`SELECT * FROM selected_users WHERE chatid = ${chatId};`);
+    return (await pushQuery(`SELECT * FROM selected_users WHERE chatid = ${chatId};`)) ?? [];
   };
 
   return {
