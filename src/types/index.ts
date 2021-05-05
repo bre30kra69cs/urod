@@ -5,7 +5,7 @@ export interface Chat {
 export interface User {
   id: number;
   chatid: number;
-  date: number;
+  date: string;
 }
 
 export interface DataManager {

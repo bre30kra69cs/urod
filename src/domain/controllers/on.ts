@@ -1,4 +1,4 @@
-import {getResourceUrl, createCommand} from '../../utils';
+import {getName, getResourceUrl, createCommand} from '../../utils';
 
 const message = () => {
   return 'Ой ой ой, сучечки 😎❤️⚠️ Я бот *УРОД* и теперь в этом чатике я буду выбирать *ПОПУЩЕННОГО ДНЯ*. Делать это буду каждый день с 10 по 11 ч 😧😹👨👨‍🦲👩‍🦰❤️⚠️🐘🐉 Лаба Лаба Даб Даб!';
@@ -16,7 +16,9 @@ const command = createCommand('on', (dm) => async (ctx) => {
   const chats = await dm.getChats();
 
   if (chats.find(({id}) => id === ctx.chat!.id)) {
-    ctx.replyWithMarkdown(messageIsHere(ctx.from?.username));
+    ctx.replyWithMarkdown(
+      messageIsHere(getName(ctx.from?.first_name, ctx.from?.last_name, ctx.from?.username)),
+    );
     return;
   }
 

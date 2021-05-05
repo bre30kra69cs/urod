@@ -40,7 +40,7 @@ const command = createCommand('daily', () => async (ctx) => {
   }
 
   ctx.replyWithMarkdown(
-    message(getName(ctx.from?.username, ctx.from?.first_name, ctx.from?.last_name)),
+    message(getName(ctx.from?.first_name, ctx.from?.last_name, ctx.from?.username)),
   );
 });
 

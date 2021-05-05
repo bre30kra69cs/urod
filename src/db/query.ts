@@ -1,3 +1,4 @@
+import {DateTime} from 'luxon';
 import {Client} from 'pg';
 import {User, Chat, DataManager} from '../types';
 
@@ -17,10 +18,10 @@ export const createDataManager = (db: Client): DataManager => {
   const createTables = async () => {
     await pushQuery(`CREATE TABLE chats (id INT NOT NULL)`);
     await pushQuery(
-      `CREATE TABLE users (id INT NOT NULL, chatid INT NOT NULL, date timestamp NOT NULL)`,
+      `CREATE TABLE users (id INT NOT NULL, chatid INT NOT NULL, date text NOT NULL)`,
     );
     await pushQuery(
-      `CREATE TABLE selected_users (id INT NOT NULL, chatid INT NOT NULL, date timestamp NOT NULL)`,
+      `CREATE TABLE selected_users (id INT NOT NULL, chatid INT NOT NULL, date text NOT NULL)`,
     );
   };
 
@@ -45,7 +46,9 @@ export const createDataManager = (db: Client): DataManager => {
   };
 
   const addUser = async (userId: number, chatId: number) => {
-    await pushQuery(`INSERT INTO users VALUES (${userId}, ${chatId}, ${Date.now()});`);
+    await pushQuery(
+      `INSERT INTO users VALUES (${userId}, ${chatId}, ${DateTime.now().toString()});`,
+    );
   };
 
   const removeUser = async (userId: number, chatId: number) => {
