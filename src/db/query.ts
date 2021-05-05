@@ -10,7 +10,6 @@ export const createDataManager = (db: Client): DataManager => {
         }
 
         resolve(result?.rows ?? []);
-        db.end();
       });
     });
   };

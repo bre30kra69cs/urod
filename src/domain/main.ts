@@ -14,11 +14,13 @@ export const main = (db: Client) => {
     },
   });
 
-  process.once('SIGINT', () => {
+  process.once('SIGINT', async () => {
+    await db.end();
     bot.stop('SIGINT');
   });
 
-  process.once('SIGTERM', () => {
+  process.once('SIGTERM', async () => {
+    await db.end();
     bot.stop('SIGTERM');
   });
 };
