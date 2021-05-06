@@ -20,6 +20,7 @@ export interface DataManager {
   addSelectedUser: (userId: number, chatId: number) => Promise<void>;
   removeSelectedUser: (userId: number, chatId: number) => Promise<void>;
   bulkChats: () => Promise<BulkChat[]>;
+  getChatSelectedUser: (chatId: number) => Promise<User | undefined>;
 }
 
 export interface Meme {

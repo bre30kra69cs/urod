@@ -35,14 +35,22 @@ const message = (author = '', target = '') => {
   ]);
 };
 
-const command = createCommand('daily', async ({ctx}) => {
+const command = createCommand('daily', async ({dm, ctx}) => {
   if (!ctx.chat?.id) {
     return;
   }
 
-  ctx.replyWithMarkdown(
-    message(getName(ctx.from?.first_name, ctx.from?.last_name, ctx.from?.username)),
-  );
+  const selected = await dm.getChatSelectedUser(ctx.chat.id);
+  const author = getName(ctx.from?.first_name, ctx.from?.last_name, ctx.from?.username);
+
+  if (!selected?.id) {
+    await ctx.replyWithMarkdown(message(author));
+    return;
+  }
+
+  const user = await ctx.getChatMember(selected.id);
+  const target = getName(user.user.first_name, user.user.last_name, user.user.username);
+  await ctx.replyWithMarkdown(message(author, target));
 });
 
 export default command;

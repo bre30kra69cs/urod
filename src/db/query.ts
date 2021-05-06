@@ -1,7 +1,7 @@
 import {DateTime} from 'luxon';
 import {Client} from 'pg';
 import {User, Chat, BulkChat, DataManager} from '../types';
-import {all} from '../utils';
+import {all, last} from '../utils';
 
 export const createDataManager = (db: Client): DataManager => {
   const pushQuery = async <T>(query: string): Promise<T[]> => {
@@ -79,6 +79,11 @@ export const createDataManager = (db: Client): DataManager => {
     });
   };
 
+  const getChatSelectedUser = async (chatId: number): Promise<User | undefined> => {
+    const users = await getChatSelectedUsers(chatId);
+    return last(users);
+  };
+
   return {
     createTables,
     getChatUsers,
@@ -91,5 +96,6 @@ export const createDataManager = (db: Client): DataManager => {
     addSelectedUser,
     removeSelectedUser,
     bulkChats,
+    getChatSelectedUser,
   };
 };

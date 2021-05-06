@@ -5,7 +5,7 @@ const message = () => {
 };
 
 const command = createCommand('info', async ({ctx}) => {
-  ctx.replyWithMarkdown(message());
+  await ctx.replyWithMarkdown(message());
 });
 
 export default command;

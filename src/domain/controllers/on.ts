@@ -16,7 +16,7 @@ const command = createCommand('on', async ({dm, ctx}) => {
   const chats = await dm.getChats();
 
   if (chats.find(({id}) => id === ctx.chat!.id)) {
-    ctx.replyWithMarkdown(
+    await ctx.replyWithMarkdown(
       messageIsHere(getName(ctx.from?.first_name, ctx.from?.last_name, ctx.from?.username)),
     );
     return;
