@@ -1,7 +1,7 @@
 import {createCommand, getRandomMax, getRandomFrom} from '../../utils';
 
 const command = createCommand('meme', async ({api, ctx}) => {
-  const page = getRandomMax(30);
+  const page = getRandomMax(11);
   console.log({page});
   const memes = await api.getMemes(page);
   console.log({memes});
