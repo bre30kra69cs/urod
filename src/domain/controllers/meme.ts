@@ -1,11 +1,9 @@
-import {createCommand, head} from '../../utils';
+import {createCommand, head, last} from '../../utils';
 
 const command = createCommand('meme', async ({api, ctx}) => {
   const data = await api.getMemes(1);
-  console.log({data});
   const meme = head(data.memes);
-  const image = head(meme.preview);
-  console.log({image});
+  const image = last(meme.preview);
   ctx.replyWithPhoto(image);
 });
 
