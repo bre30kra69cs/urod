@@ -1,13 +1,12 @@
-import {createCommand, getRandomMax, getRandomFrom} from '../../utils';
+import {createCommand, head} from '../../utils';
 
 const command = createCommand('meme', async ({api, ctx}) => {
-  const page = getRandomMax(11);
-  console.log({page});
-  const memes = await api.getMemes(page);
-  console.log({memes});
-  const image = getRandomFrom(memes.data);
+  const data = await api.getMemes(1);
+  console.log({data});
+  const meme = head(data.memes);
+  const image = head(meme.preview);
   console.log({image});
-  ctx.replyWithPhoto(image.image);
+  ctx.replyWithPhoto(image);
 });
 
 export default command;

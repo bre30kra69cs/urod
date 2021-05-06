@@ -5,7 +5,7 @@ import {Api, GetMememsResponse} from '../types';
 const createApi = (): Api => {
   const getMemes = async (page: number) => {
     const response = await axios.get<GetMememsResponse>(
-      `http://alpha-meme-maker.herokuapp.com/${page}`,
+      `https://meme-api.herokuapp.com/gimme/${page}`,
     );
     return response.data;
   };

@@ -20,19 +20,20 @@ export interface DataManager {
 }
 
 export interface Meme {
-  ID: number;
-  bottomText: string;
-  image: string;
-  name: string;
-  tags: string;
-  topText: string;
+  postLink: string;
+  subreddit: string;
+  title: string;
+  url: string;
+  nsfw: boolean;
+  spoiler: boolean;
+  author: string;
+  ups: number;
+  preview: string[];
 }
 
 export interface GetMememsResponse {
-  code: number;
-  data: Meme[];
-  message: string;
-  next: string;
+  count: number;
+  memes: Meme[];
 }
 
 export interface Api {
