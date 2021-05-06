@@ -8,10 +8,11 @@ import off from './controllers/off';
 import init from './controllers/init';
 import join from './controllers/join';
 import leave from './controllers/leave';
+import meme from './controllers/meme';
 import {createDataManager} from '../db';
 import {api} from '../api';
 
-const commands = [daily, info, on, off, init, join, leave];
+const commands = [daily, info, on, off, init, join, leave, meme];
 
 export const compose = (bot: Telegraf, db: Client) => {
   const dm = createDataManager(db);
