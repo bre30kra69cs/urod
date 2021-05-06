@@ -8,7 +8,7 @@ const messageIsHere = (name?: string) => {
   return `Он собрадся меня включить... *ХА!* Вы только посмотрите на этого клоуна 🤡🤡🤡🤹🤹 *${name}* 😝🤩😂🤣`;
 };
 
-const command = createCommand('on', (dm) => async (ctx) => {
+const command = createCommand('on', async ({dm, ctx}) => {
   if (!ctx.chat?.id) {
     return;
   }

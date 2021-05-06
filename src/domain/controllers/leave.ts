@@ -1,6 +1,6 @@
 import {getFucks, createCommand} from '../../utils';
 
-const command = createCommand('leave', (dm) => async (ctx) => {
+const command = createCommand('leave', async ({dm, ctx}) => {
   if (!ctx.chat?.id || !ctx.from?.id) {
     return;
   }

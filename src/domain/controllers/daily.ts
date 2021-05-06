@@ -35,7 +35,7 @@ const message = (author = '', target = '') => {
   ]);
 };
 
-const command = createCommand('daily', () => async (ctx) => {
+const command = createCommand('daily', async ({ctx}) => {
   if (!ctx.chat?.id) {
     return;
   }

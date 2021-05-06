@@ -18,3 +18,23 @@ export interface DataManager {
   addUser: (userId: number, chatId: number) => Promise<void>;
   removeUser: (userId: number, chatId: number) => Promise<void>;
 }
+
+export interface Meme {
+  ID: number;
+  bottomText: string;
+  image: string;
+  name: string;
+  tags: string;
+  topText: string;
+}
+
+export interface GetMememsResponse {
+  code: number;
+  data: Meme[];
+  message: string;
+  next: string;
+}
+
+export interface Api {
+  getMemes: (page: number) => Promise<GetMememsResponse>;
+}

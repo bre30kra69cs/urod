@@ -1,6 +1,6 @@
 import {getFucks, createCommand} from '../../utils';
 
-const command = createCommand('off', (dm) => async (ctx) => {
+const command = createCommand('off', async ({dm, ctx}) => {
   if (!ctx.chat?.id) {
     return;
   }

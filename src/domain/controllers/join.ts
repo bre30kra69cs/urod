@@ -4,7 +4,7 @@ const message = (author: string) => {
   return `${author} 🙈😁⚠️🤟👍🤝👯‍♂️👨‍👩‍👧‍👦 теперь я могу выбирать тебя *ПОПУЩЕННЫМ ДНЯ*...`;
 };
 
-const command = createCommand('join', (dm) => async (ctx) => {
+const command = createCommand('join', async ({dm, ctx}) => {
   const name = getName(ctx.from?.first_name, ctx.from?.last_name, ctx.from?.username);
 
   if (!ctx.chat?.id || !ctx.from?.id || !name) {

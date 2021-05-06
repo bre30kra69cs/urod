@@ -12,7 +12,7 @@ const message = () => {
   return 'INIT DONE 😎😎😎';
 };
 
-const command = createCommand('init', (dm) => async (ctx) => {
+const command = createCommand('init', async ({dm, ctx}) => {
   try {
     await dm.createTables();
     await ctx.reply(tableMessageSuccess());
