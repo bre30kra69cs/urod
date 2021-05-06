@@ -1,4 +1,4 @@
-import {getFucks, createCommand} from '../../utils';
+import {getFuck, createCommand} from '../../utils';
 
 const command = createCommand('leave', async ({dm, ctx}) => {
   if (!ctx.chat?.id || !ctx.from?.id) {
@@ -7,7 +7,7 @@ const command = createCommand('leave', async ({dm, ctx}) => {
 
   await dm.removeUser(ctx.from.id, ctx.chat.id);
   await ctx.replyWithPhoto({
-    source: getFucks(),
+    source: getFuck(),
   });
 });
 

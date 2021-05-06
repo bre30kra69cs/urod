@@ -1,3 +1,4 @@
 node_modules
 dist
 CONFIG.json
+.DS_Store

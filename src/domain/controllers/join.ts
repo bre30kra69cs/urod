@@ -1,4 +1,4 @@
-import {getName, getFucks, createCommand} from '../../utils';
+import {getName, getFuck, createCommand} from '../../utils';
 
 const message = (author: string) => {
   return `${author} 🙈😁⚠️🤟👍🤝👯‍♂️👨‍👩‍👧‍👦 теперь я могу выбирать тебя *ПОПУЩЕННЫМ ДНЯ*...`;
@@ -15,7 +15,7 @@ const command = createCommand('join', async ({dm, ctx}) => {
 
   if (chatUsers.find((user) => user.id === ctx.from?.id)) {
     await ctx.replyWithPhoto({
-      source: getFucks(),
+      source: getFuck(),
     });
     return;
   }

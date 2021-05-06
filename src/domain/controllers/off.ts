@@ -1,4 +1,4 @@
-import {getFucks, createCommand} from '../../utils';
+import {getFuck, createCommand} from '../../utils';
 
 const command = createCommand('off', async ({dm, ctx}) => {
   if (!ctx.chat?.id) {
@@ -7,7 +7,7 @@ const command = createCommand('off', async ({dm, ctx}) => {
 
   await dm.removeChat(ctx.chat.id);
   await ctx.replyWithPhoto({
-    source: getFucks(),
+    source: getFuck(),
   });
 });
 
