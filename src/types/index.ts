@@ -17,6 +17,7 @@ export interface DataManager {
   getChatSelectedUsers: (chatId: number) => Promise<User[]>;
   addUser: (userId: number, chatId: number) => Promise<void>;
   removeUser: (userId: number, chatId: number) => Promise<void>;
+  bulkChats: () => Promise<BulkChat[]>;
 }
 
 export interface Meme {
@@ -38,4 +39,10 @@ export interface GetMememsResponse {
 
 export interface Api {
   getMemes: (page: number) => Promise<GetMememsResponse>;
+}
+
+export interface BulkChat {
+  chatid: number;
+  users: User[];
+  selectedUsers: User[];
 }

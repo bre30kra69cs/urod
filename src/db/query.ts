@@ -1,6 +1,7 @@
 import {DateTime} from 'luxon';
 import {Client} from 'pg';
-import {User, Chat, DataManager} from '../types';
+import {User, Chat, BulkChat, DataManager} from '../types';
+import {all} from '../utils';
 
 export const createDataManager = (db: Client): DataManager => {
   const pushQuery = async <T>(query: string): Promise<T[]> => {
@@ -55,6 +56,19 @@ export const createDataManager = (db: Client): DataManager => {
     await pushQuery(`DELETE FROM users WHERE id = ${userId} AND chatid = ${chatId};`);
   };
 
+  const bulkChats = async (): Promise<BulkChat[]> => {
+    const chats = await getChats();
+    const users = await all(chats.map(({id}) => getChatUsers(id)));
+    const selectedUsers = await all(chats.map(({id}) => getChatSelectedUsers(id)));
+    return chats.map(({id}, index) => {
+      return {
+        chatid: id,
+        users: users[index],
+        selectedUsers: selectedUsers[index],
+      };
+    });
+  };
+
   return {
     createTables,
     getChatUsers,
@@ -64,5 +78,6 @@ export const createDataManager = (db: Client): DataManager => {
     getChatSelectedUsers,
     addUser,
     removeUser,
+    bulkChats,
   };
 };

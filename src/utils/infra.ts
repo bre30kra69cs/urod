@@ -19,19 +19,21 @@ export const createCommand = (
 
 export const createSchedule = (
   scheduleName: string,
-  time: string,
+  times: string[],
   fn: (services: {dm: DataManager; api: Api; bot: Telegraf}) => Promise<void>,
 ) => (bot: Telegraf, dm: DataManager, api: Api) => {
-  cron.schedule(time, async () => {
-    if (!cron.validate(time)) {
-      error(scheduleName, 'cron time not validate!');
-      return;
-    }
+  times.forEach((time) =>
+    cron.schedule(time, async () => {
+      if (!cron.validate(time)) {
+        error(scheduleName, 'cron time not validate!');
+        return;
+      }
 
-    try {
-      await fn({dm, api, bot});
-    } catch (err) {
-      error(scheduleName, err);
-    }
-  });
+      try {
+        await fn({dm, api, bot});
+      } catch (err) {
+        error(scheduleName, err);
+      }
+    }),
+  );
 };
