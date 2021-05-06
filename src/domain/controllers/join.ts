@@ -1,7 +1,7 @@
-import {getName, getRandomFrom, getResourceUrl, createCommand} from '../../utils';
+import {getName, getFucks, createCommand} from '../../utils';
 
 const message = (author: string) => {
-  return `${author} 🙈😁⚠️🤟👍🤝👯‍♂️👨‍👩‍👧‍👦 теперь я могу выбирать тебя *ПОПУЩЕННЫМ* дня...`;
+  return `${author} 🙈😁⚠️🤟👍🤝👯‍♂️👨‍👩‍👧‍👦 теперь я могу выбирать тебя *ПОПУЩЕННЫМ ДНЯ*...`;
 };
 
 const command = createCommand('join', (dm) => async (ctx) => {
@@ -15,11 +15,7 @@ const command = createCommand('join', (dm) => async (ctx) => {
 
   if (chatUsers.find((user) => user.id === ctx.from?.id)) {
     await ctx.replyWithPhoto({
-      source: getRandomFrom([
-        getResourceUrl('fuck.jpeg'),
-        getResourceUrl('fuck1.png'),
-        getResourceUrl('fuck2.jpeg'),
-      ]),
+      source: getFucks(),
     });
     return;
   }

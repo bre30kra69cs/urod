@@ -1,4 +1,4 @@
-import {getResourceUrl, getRandomFrom, createCommand} from '../../utils';
+import {getFucks, createCommand} from '../../utils';
 
 const command = createCommand('leave', (dm) => async (ctx) => {
   if (!ctx.chat?.id || !ctx.from?.id) {
@@ -7,11 +7,7 @@ const command = createCommand('leave', (dm) => async (ctx) => {
 
   await dm.removeUser(ctx.from.id, ctx.chat.id);
   await ctx.replyWithPhoto({
-    source: getRandomFrom([
-      getResourceUrl('fuck.jpeg'),
-      getResourceUrl('fuck1.png'),
-      getResourceUrl('fuck2.jpeg'),
-    ]),
+    source: getFucks(),
   });
 });
 
