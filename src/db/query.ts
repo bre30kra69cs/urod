@@ -56,6 +56,16 @@ export const createDataManager = (db: Client): DataManager => {
     await pushQuery(`DELETE FROM users WHERE id = ${userId} AND chatid = ${chatId};`);
   };
 
+  const addSelectedUser = async (userId: number, chatId: number) => {
+    await pushQuery(
+      `INSERT INTO selected_users VALUES (${userId}, ${chatId}, '${DateTime.now().toString()}');`,
+    );
+  };
+
+  const removeSelectedUser = async (userId: number, chatId: number) => {
+    await pushQuery(`DELETE FROM selected_users WHERE id = ${userId} AND chatid = ${chatId};`);
+  };
+
   const bulkChats = async (): Promise<BulkChat[]> => {
     const chats = await getChats();
     const users = await all(chats.map(({id}) => getChatUsers(id)));
@@ -78,6 +88,8 @@ export const createDataManager = (db: Client): DataManager => {
     getChatSelectedUsers,
     addUser,
     removeUser,
+    addSelectedUser,
+    removeSelectedUser,
     bulkChats,
   };
 };

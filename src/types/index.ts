@@ -17,6 +17,8 @@ export interface DataManager {
   getChatSelectedUsers: (chatId: number) => Promise<User[]>;
   addUser: (userId: number, chatId: number) => Promise<void>;
   removeUser: (userId: number, chatId: number) => Promise<void>;
+  addSelectedUser: (userId: number, chatId: number) => Promise<void>;
+  removeSelectedUser: (userId: number, chatId: number) => Promise<void>;
   bulkChats: () => Promise<BulkChat[]>;
 }
 
