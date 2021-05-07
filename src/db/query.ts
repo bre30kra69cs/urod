@@ -17,12 +17,12 @@ export const createDataManager = (db: Client): DataManager => {
   };
 
   const createTables = async () => {
-    await pushQuery(`CREATE TABLE chats (id INT NOT NULL);`);
+    await pushQuery(`CREATE TABLE chats (id BIGINT NOT NULL);`);
     await pushQuery(
-      `CREATE TABLE users (id INT NOT NULL, chatid INT NOT NULL, date text NOT NULL);`,
+      `CREATE TABLE users (id BIGINT NOT NULL, chatid BIGINT NOT NULL, date text NOT NULL);`,
     );
     await pushQuery(
-      `CREATE TABLE selected_users (id INT NOT NULL, chatid INT NOT NULL, date text NOT NULL);`,
+      `CREATE TABLE selected_users (id BIGINT NOT NULL, chatid BIGINT NOT NULL, date text NOT NULL);`,
     );
   };
 
