@@ -12,10 +12,10 @@ type ToScheme<T> = {
 
 export const parser = <T>(scheme: ToScheme<T>) => (data: any = {}) => {
   return Object.keys(scheme)
-    .map((key: unknown) => {
+    .map((key: any) => {
       const fn = scheme[key as keyof T];
       const result = fn?.(data?.[key as string]);
-      return result ? {key: result} : {};
+      return result ? {[key]: result} : {};
     })
     .reduce((acc, next) => {
       return {
