@@ -8,12 +8,16 @@ const messageIsHere = (name?: string) => {
   return `Он собрадся меня включить... *ХА!* Вы только посмотрите на этого клоуна 🤡🤡🤡🤹🤹 *${name}* 😝🤩😂🤣`;
 };
 
-const command = createCommand('on', async ({dm, ctx}) => {
+const command = createCommand('on', async ({dm, ctx, log}) => {
   if (!ctx.chat?.id) {
     return;
   }
 
   const chats = await dm.getChats();
+
+  log({
+    chats,
+  });
 
   if (chats.find(({id}) => id === ctx.chat!.id)) {
     await ctx.replyWithMarkdown(

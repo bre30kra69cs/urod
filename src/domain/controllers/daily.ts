@@ -44,13 +44,18 @@ const message = (author = '', target = '') => {
   ]);
 };
 
-const command = createCommand('daily', async ({dm, ctx}) => {
+const command = createCommand('daily', async ({dm, ctx, log}) => {
   if (!ctx.chat?.id) {
     return;
   }
 
   const selected = await dm.getChatSelectedUser(ctx.chat.id);
   const author = getName(ctx.from?.first_name, ctx.from?.last_name, ctx.from?.username);
+
+  log({
+    selected,
+    author,
+  });
 
   if (!selected?.id) {
     await ctx.replyWithMarkdown(message(author));
@@ -59,6 +64,12 @@ const command = createCommand('daily', async ({dm, ctx}) => {
 
   const user = await ctx.getChatMember(selected.id);
   const target = getName(user.user.first_name, user.user.last_name, user.user.username);
+
+  log({
+    user,
+    target,
+  });
+
   await ctx.replyWithMarkdown(message(author, target));
 });
 
