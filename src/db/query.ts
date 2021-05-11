@@ -2,6 +2,7 @@ import {DateTime} from 'luxon';
 import {Client} from 'pg';
 import {User, Chat, BulkChat, DataManager} from '../types';
 import {all, last} from '../utils';
+import {userParser, chatParser} from './parsers';
 
 export const createDataManager = (db: Client): DataManager => {
   const pushQuery = async <T>(query: string): Promise<T[]> => {
@@ -27,42 +28,46 @@ export const createDataManager = (db: Client): DataManager => {
   };
 
   const getChatUsers = async (chatId: number): Promise<User[]> => {
-    return (await pushQuery(`SELECT * FROM users WHERE chatid = ${chatId};`)) ?? [];
+    const users = (await pushQuery(`SELECT * FROM users WHERE chatid = ${chatId};`)) ?? [];
+    return users.map(userParser);
   };
 
-  const addChat = async (chatId: number) => {
+  const addChat = async (chatId: number): Promise<void> => {
     await pushQuery(`INSERT INTO chats VALUES (${chatId});`);
   };
 
-  const removeChat = async (chatId: number) => {
+  const removeChat = async (chatId: number): Promise<void> => {
     await pushQuery(`DELETE FROM chats WHERE id = ${chatId};`);
   };
 
   const getChats = async (): Promise<Chat[]> => {
-    return (await pushQuery(`SELECT * FROM chats;`)) ?? [];
+    const chats = (await pushQuery(`SELECT * FROM chats;`)) ?? [];
+    return chats.map(chatParser);
   };
 
   const getChatSelectedUsers = async (chatId: number): Promise<User[]> => {
-    return (await pushQuery(`SELECT * FROM selected_users WHERE chatid = ${chatId};`)) ?? [];
+    const selectedUsers =
+      (await pushQuery(`SELECT * FROM selected_users WHERE chatid = ${chatId};`)) ?? [];
+    return selectedUsers.map(userParser);
   };
 
-  const addUser = async (userId: number, chatId: number) => {
+  const addUser = async (userId: number, chatId: number): Promise<void> => {
     await pushQuery(
       `INSERT INTO users VALUES (${userId}, ${chatId}, '${DateTime.now().toString()}');`,
     );
   };
 
-  const removeUser = async (userId: number, chatId: number) => {
+  const removeUser = async (userId: number, chatId: number): Promise<void> => {
     await pushQuery(`DELETE FROM users WHERE id = ${userId} AND chatid = ${chatId};`);
   };
 
-  const addSelectedUser = async (userId: number, chatId: number) => {
+  const addSelectedUser = async (userId: number, chatId: number): Promise<void> => {
     await pushQuery(
       `INSERT INTO selected_users VALUES (${userId}, ${chatId}, '${DateTime.now().toString()}');`,
     );
   };
 
-  const removeSelectedUser = async (userId: number, chatId: number) => {
+  const removeSelectedUser = async (userId: number, chatId: number): Promise<void> => {
     await pushQuery(`DELETE FROM selected_users WHERE id = ${userId} AND chatid = ${chatId};`);
   };
 

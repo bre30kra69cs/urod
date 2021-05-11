@@ -7,3 +7,4 @@ export * from './format';
 export * from './fucks';
 export * from './list';
 export * from './async';
+export * from './parser';
