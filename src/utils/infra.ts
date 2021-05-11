@@ -58,7 +58,7 @@ export const createSchedule = (
   times.forEach((time) =>
     cron.schedule(time, async () => {
       if (!cron.validate(time)) {
-        error(scheduleName, 'cron time not validate!');
+        error(scheduleName, 'cron time not valid!');
         return;
       }
 
